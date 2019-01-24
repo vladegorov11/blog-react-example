@@ -6,14 +6,16 @@ class DestroyButton extends Component  {
 
   handleClick = (e) => {
     e.preventDefault();
-    console.log(this.props.id);
     this.props.deleteArticle(this.props.id)
   }
 
   render() {
-    const id = this.props.id
     return (
-      <a onClick={this.handleClick}>delete {id}</a>
+      <a href='#' onClick={this.handleClick} >
+        <i className="material-icons">
+          delete
+        </i>
+      </a>
     )
   }
 }

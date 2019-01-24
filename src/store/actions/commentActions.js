@@ -1,6 +1,6 @@
 import axios from 'axios'
-import {GET_COMMENTS} from './types'
-const url = 'http://localhost:3001/api/v1/'
+import {GET_COMMENTS, API_URL} from './types'
+
 
 export const getComments = (article) => {
   return (dispatch, getState) => {

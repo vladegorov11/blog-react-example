@@ -1,12 +1,11 @@
-import React, {Component} from "react"
+import React from "react"
 import CommentItem from "./CommentItem"
 
- class Comments extends Component {
-  render() {
+ const Comments = (props) =>  {
     return (
       <CommentItem/>
     )
-  }
+  
 }
 
 export default Comments;

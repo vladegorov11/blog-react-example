@@ -6,6 +6,7 @@ import Home from './home/Home'
 import Navbar from './layout/Navbar'
 import ArticleShow from './articles/ArticleShow'
 import CreateArticle from './articles/CreateArticle'
+import UpdateArticle from './articles/UpdateArticle'
 import {NotFound} from '../pages/errors'
 
 class App extends Component {
@@ -20,6 +21,7 @@ class App extends Component {
             <Route path="/signin/" component={SignIn} />
             <Route path="/article/:id" component={ArticleShow}/>
             <Route path="/articles/new/" component={CreateArticle}/>
+            <Route path="/articles_update/:id" component={UpdateArticle}/>
             <Route path="*" component={NotFound}/>
           </Switch>
         </div>

@@ -1,9 +1,9 @@
-import React, {Component} from "react"
+import React from "react"
 
-export default class CommentItem extends Component {
-  render() {
+const CommentItem = (props) => {
     return (
       <div> comments  </div>
     )
-  }
 }
+
+export default CommentItem;

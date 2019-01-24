@@ -23,7 +23,7 @@ class ArticleShow extends Component {
       <div className='container section'>
         <div className='card z-depth-0'>
           <div className="card-content">
-            <span className='card-title'><h3>{title} id----{id}</h3></span>
+            <span className='card-title'><h3>{title}</h3></span>
             <div className="card-action grey-text lighten-4 gret">
               <div>posted by Vlad Yahorov</div>
               <div>{created_at}</div>

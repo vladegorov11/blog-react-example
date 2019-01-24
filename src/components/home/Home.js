@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import Articles from '../articles/Articles'
-import Categories from "./Categories"
+import Categories from "../categories/Categories"
 import {connect} from 'react-redux'
 import {getArticles} from '../../store/actions/articleActions'
 import {LineLoader} from '../../pages/loaders'
 
 class Home extends Component {
-
+  state = {
+    isFixed: false
+  }
   componentDidMount() {
       this.props.getArticles();
       window.addEventListener('scroll', this.handleScroll);
@@ -16,14 +18,18 @@ class Home extends Component {
       window.removeEventListener('scroll', this.handleScroll);
   }
 
-  handleScroll(event) {
+  handleScroll = (event) =>  {
       if (window.scrollY > document.documentElement.offsetHeight - window.innerHeight - 300){
 
+      }
+      if (window.scrollY > 500 ) {
+        this.setState({isFixed : true})
+      }else {
+        this.setState({isFixed : false})
       }
   }
 
   render() {
-    console.log('asdasdada',this.props);
     const {articles} = this.props;
     if (this.props.isLoading){
       return (
@@ -36,7 +42,7 @@ class Home extends Component {
             <Articles articles={articles}/>
           </div>
           <div className='col s12 m4'>
-            <Categories/>
+            <Categories isFixed={this.state.isFixed}/>
           </div>
         </div>
       </div>

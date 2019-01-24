@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import {createArticle} from '../../store/actions/articleActions'
 import {connect} from 'react-redux'
+import { Editor } from 'react-draft-wysiwyg';
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
 class CreateArticle extends Component {
   state = {
     title: '',
     content: '',
-    image: ''
+    image: '',
+    category: ''
   }
   handleChange = (e) => {
     this.setState({
@@ -16,7 +19,7 @@ class CreateArticle extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.createArticle(this.state)
+    this.props.createArticle(this.state, this.props.history)
   }
 
   handleFile = (e) => {
@@ -25,18 +28,26 @@ class CreateArticle extends Component {
     })
   }
   render() {
+    console.log(this.state);
+    const categories = this.props.categories
     return (
        <div className="container">
           <form className='white' onSubmit={this.handleSubmit}>
             <h5 className='grey-text text-darken-3 center'>Create article </h5>
-
             <div className='input-field'>
               <label htmlFor='title'>Article title</label>
               <input type='text' id='title' onChange={this.handleChange}/>
             </div>
             <div className='input-field'>
-            <label htmlFor='content'>Article title</label>
-            <textarea className='materialize-textarea' id='content' onChange={this.handleChange}/>
+            <label htmlFor='content'>Article content</label>
+              <textarea className='materialize-textarea' id='content' onChange={this.handleChange}/>
+            </div>
+            <div className='input-field'>
+              <select id='category' value={this.state.category} onChange={this.handleChange} >
+                {categories.map(category => {
+                  return (<option key={category.id} value={category.id}>{category.name}</option>)
+                })}
+              </select>
             </div>
             <input type="file" id='image' onChange={this.handleFile}/>
             <div className='input-field'>
@@ -47,10 +58,15 @@ class CreateArticle extends Component {
     );
   }
 }
+const mapStateToProps = (state) => {
+  return {
+    categories: state.category.categories
+  }
+}
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    createArticle: (article) => dispatch(createArticle(article))
+    createArticle: (article, history) => dispatch(createArticle(article, history))
   }
 }
-export default connect(null, mapDispatchToProps)(CreateArticle);
+export default connect(mapStateToProps, mapDispatchToProps)(CreateArticle);
