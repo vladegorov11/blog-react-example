@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux'
+import {signUp} from '../../store/actions/authActions'
 
 class SignUp extends Component {
   state = {
     email: '',
     password: '',
-    firstName: '',
-    lastName: '',
+    first_name: '',
+    last_name: ''
   }
   handleChange = (e) => {
     this.setState({
@@ -15,9 +17,10 @@ class SignUp extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log(this.state);
+    this.props.signUp(this.state, this.props.history)
   }
   render() {
+    console.log(this.state);
     return (
        <div className="container">
           <form className='white' onSubmit={this.handleSubmit}>
@@ -27,23 +30,29 @@ class SignUp extends Component {
               <input type='email' id='email' onChange={this.handleChange}/>
             </div>
             <div className='input-field'>
-              <label htmlFor='firstName'>First name</label>
-              <input type='text' id='firstName' onChange={this.handleChange}/>
+              <label htmlFor='first_name'>First name</label>
+              <input type='text' id='first_name' onChange={this.handleChange}/>
             </div>
             <div className='input-field'>
-              <label htmlFor='lastName'>Last name</label>
-              <input type='text' id='lastName' onChange={this.handleChange}/>
+              <label htmlFor='last_name'>Last name</label>
+              <input type='text' id='last_name' onChange={this.handleChange}/>
             </div>
             <div className='input-field'>
               <label htmlFor='password'>Password</label>
               <input type='password' id='password' onChange={this.handleChange}/>
             </div>
             <div className='input-field'>
-              <button className='btn pink lighten-1 z-depth-0'>Registration</button>
+              <button className='btn lighten-1 z-depth-0'>Registration</button>
             </div>
           </form>
        </div>
     );
   }
 }
-export default SignUp;
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    signUp: (new_user, history) => dispatch(signUp(new_user, history))
+  }
+}
+export default connect(null, mapDispatchToProps)(SignUp);

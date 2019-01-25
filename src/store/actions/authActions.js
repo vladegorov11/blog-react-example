@@ -1,30 +1,37 @@
 import {SIGN_IN, SIGN_IN_ERROR, SIGN_OUT, SIGN_UP, SIGN_UP_ERROR, API_URL} from './types'
+import axios from 'axios'
 
-export const signIn = () => {
+export const signIn = (user, history) => {
   return (dispatch, getState) => {
-    axios.get(API_URL + 'users/login')
+    axios.post(API_URL + 'users/login', {
+        user: user
+    })
     .then(function (response) {
+      history.push('/')
       dispatch({type: SIGN_IN, user: response.data.data.user});
     })
     .catch(function (error) {
-      dispatch({type: SIGN_IN_ERROR, error: response.error});
+      dispatch({type: SIGN_IN_ERROR, error: error.error});
     });
   }
 };
 
-export const signUp = () => {
+export const signUp = (user, history) => {
   return (dispatch, getState) => {
-    axios.get(API_URL + 'users')
+    axios.post(API_URL + 'users', {
+        user: user
+    })
     .then(function (response) {
+      history.push('/')
       dispatch({type: SIGN_UP, user: response.data.data.user});
     })
     .catch(function (error) {
-      dispatch({type: SIGN_UP_ERROR, user: response.error});
+      dispatch({type: SIGN_UP_ERROR, user: error.error});
     });
   }
 };
 
-export const signUp = () => {
+export const signOut = () => {
   return (dispatch, getState) => {
     dispatch({type: SIGN_OUT, user: ''});
   }

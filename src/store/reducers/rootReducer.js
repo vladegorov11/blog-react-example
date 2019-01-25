@@ -4,7 +4,7 @@ import categoryReducer from './categoryReducer'
 import {combineReducers} from 'redux'
 
 const rootReducer = combineReducers({
-  auth: authReducer,
+  user: authReducer,
   article: articleReducer,
   category: categoryReducer
 })

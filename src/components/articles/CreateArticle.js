@@ -49,9 +49,17 @@ class CreateArticle extends Component {
                 })}
               </select>
             </div>
-            <input type="file" id='image' onChange={this.handleFile}/>
+            <div class="file-field input-field ">
+              <div class="btn">
+                <span>File</span>
+                <input type="file" id='image' onChange={this.handleFile}/>
+              </div>
+              <div class="file-path-wrapper">
+                <input class="file-path validate" type="text"/>
+              </div>
+            </div>
             <div className='input-field'>
-              <button className='btn pink lighten-1 z-depth-0'>Create</button>
+              <button className='btn lighten-1 z-depth-0'>Create</button>
             </div>
           </form>
        </div>

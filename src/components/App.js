@@ -8,13 +8,14 @@ import ArticleShow from './articles/ArticleShow'
 import CreateArticle from './articles/CreateArticle'
 import UpdateArticle from './articles/UpdateArticle'
 import {NotFound} from '../pages/errors'
+import {connect} from 'react-redux'
 
 class App extends Component {
   render() {
     return (
       <BrowserRouter>
         <div className="App">
-          <Navbar/>
+          <Navbar user={this.props.user}/>
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/signup/" component={SignUp} />
@@ -29,4 +30,10 @@ class App extends Component {
     );
   }
 }
-export default App;
+
+const mapStateToProps = (state) =>  {
+  return {
+   user: state.user.user
+  }
+}
+export default connect(mapStateToProps)(App);

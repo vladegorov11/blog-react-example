@@ -1,9 +1,10 @@
 import React from 'react'
 
 const CategoryItem = (props) => {
-
   return (
-    <li className="collection-item">{props.category.name}</li>
+    <li className="">
+      <a href="#!" className="category-link">{props.category.name}</a>
+    </li>
   )
 }
 

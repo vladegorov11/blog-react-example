@@ -1,4 +1,5 @@
 import React from 'react'
+import NotificationLayout from './NotificationLayout'
 
 class Notifications extends React.Component {
   state ={
@@ -12,11 +13,14 @@ class Notifications extends React.Component {
   render() {
     console.log(this.state.isOpen);
     return (
-      <a  className='btn btn-floating' onClick={this.hendleOpen}>
-        <i className="material-icons">
-          notifications
-        </i>
-      </a>
+      <div className='notify-section'>
+        <a  className='btn btn-floating waves-effect waves-light' onClick={this.hendleOpen}>
+          <i className="material-icons">
+            notifications
+          </i>
+        </a>
+        <NotificationLayout isOpen={this.state.isOpen}/>
+      </div>
     )
   }
 }
