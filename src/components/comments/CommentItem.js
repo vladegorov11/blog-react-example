@@ -1,9 +1,16 @@
 import React from "react"
 
-const CommentItem = (props) => {
+class CommentItem extends React.Component {
+  render() {
+    console.log(this.props.comment);
     return (
-      <div> comments  </div>
+        <div>
+          {this.props.comment.id}
+          {this.props.comment.body}
+        </div>
     )
+  }
 }
+
 
 export default CommentItem;

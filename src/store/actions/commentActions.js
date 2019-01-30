@@ -4,6 +4,12 @@ import {GET_COMMENTS, API_URL} from './types'
 
 export const getComments = (article) => {
   return (dispatch, getState) => {
-      dispatch({type: GET_COMMENTS, comments: article});
+    axios.get(API_URL + 'articles/' + article.id + '/comments' )
+    .then(function (response) {
+      dispatch({type: GET_COMMENTS, comments: response.data.data.comments});
+    })
+    .catch(function (error) {
+      console.log('commnts errors');
+    });
   }
 };

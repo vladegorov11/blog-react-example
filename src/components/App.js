@@ -9,6 +9,7 @@ import CreateArticle from './articles/CreateArticle'
 import UpdateArticle from './articles/UpdateArticle'
 import {NotFound} from '../pages/errors'
 import {connect} from 'react-redux'
+import requireAuth from './auth/Authenticate';
 
 class App extends Component {
   render() {
@@ -22,7 +23,7 @@ class App extends Component {
             <Route path="/signin/" component={SignIn} />
             <Route path="/article/:id" component={ArticleShow}/>
             <Route path="/articles/new/" component={CreateArticle}/>
-            <Route path="/articles_update/:id" component={UpdateArticle}/>
+            <Route path="/articles_update/:id" component={requireAuth(UpdateArticle)}/>
             <Route path="*" component={NotFound}/>
           </Switch>
         </div>

@@ -34,7 +34,7 @@ class ArticleShow extends Component {
             <p>
               {content}
             </p>
-            <Comments/>
+            <Comments article={this.props.article}/>
           </div>
 
         </div>

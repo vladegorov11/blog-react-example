@@ -11,13 +11,16 @@ export default class LikeButton extends Component {
   }
 
   render() {
-    return (
-      <a href="#" onClick={this.like}>
-        <i className="material-icons">
-          {this.state.like ? 'favorite' : 'favorite_border'}
-        </i>
-      </a>
-    )
+    if (this.props.user){
+      return (
+        <a href="#" onClick={this.like}>
+          <i className="material-icons">
+            {this.state.like ? 'favorite' : 'favorite_border'}
+          </i>
+        </a>
+      )
+    } else {
+      return null
+    }
   }
-
 }

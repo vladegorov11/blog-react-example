@@ -2,7 +2,7 @@ import axios from 'axios'
 import {ADD_ARTICLE, GET_ARTICLE, GET_ARTICLE_ERROR,
         ADD_ARTICLE_ERROR, GET_ARTICLES, GET_ARTICLES_ERROR,
         CLEAR_STORE, DELETE_ARTICLE_ERROR, DELETE_ARTICLE, API_URL} from './types'
-
+import {getUser} from '../../helpers/authHelper'
 
 export const createArticle = (article, history) => {
   return (dispatch, getState) => {
@@ -14,7 +14,10 @@ export const createArticle = (article, history) => {
     axios({
       url: API_URL + 'articles',
       method: 'POST',
-      data: formData
+      data: formData,
+      headers: {
+        'Authorization': 'Token token=' + getUser().token
+      },
     }).then(function (response) {
       history.push(`/article/${response.data.data.article.id}`)
       dispatch({type: ADD_ARTICLE, article: response.data.data.article});
